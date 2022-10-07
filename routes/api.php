@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\StateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::get('/hello',function (Request $reques){
-    return response()->json([
-        "code" => 200,
-        "message" =>'Hello World'
-    ]);
-});
+Route::apiResource('/states',StateController::class);
+Route::apiResource('/city',CityController::class);
+Route::apiResource('/address',AddressController::class);
