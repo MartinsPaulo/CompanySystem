@@ -24,3 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/states',StateController::class);
 Route::apiResource('/city',CityController::class);
 Route::apiResource('/address',AddressController::class);
+
+Route::get('hello',function ( Request $request){
+    return response()->json([
+        "code" => 200,
+        "message" => 'Hello World'
+    ]);
+});

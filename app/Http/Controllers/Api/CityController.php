@@ -9,25 +9,15 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-      /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         return response()
                     ->json(City::with('state')->get());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\cityFormRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CityFormRequest $request)
-    {   
+    {
         $city = City::create($request->all());
         return response()->json($city,201);
     }
@@ -46,7 +36,7 @@ class CityController extends Controller
             return response()->json(['message' => 'city not found'],404);
         }
 
-        return $city; 
+        return $city;
     }
 
 
@@ -83,6 +73,6 @@ class CityController extends Controller
         }else{
             return response()->json(['message' => 'city not found'],404);
         }
-        
+
     }
 }

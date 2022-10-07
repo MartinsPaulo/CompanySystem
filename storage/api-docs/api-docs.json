@@ -1,0 +1,209 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CompaniesAPI",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/state": {
+            "get": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Show all states",
+                "operationId": "11684af544ff4cff648d996d9299a6e5",
+                "responses": {
+                    "200": {
+                        "description": "Show all states."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "State registration",
+                "operationId": "states.store",
+                "requestBody": {
+                    "description": "State data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "abbreviation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "São Paulo"
+                                    },
+                                    "abbreviation": {
+                                        "type": "string",
+                                        "format": "CC",
+                                        "example": "SP"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "states": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/state/{id}": {
+            "get": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Find state for id",
+                "operationId": "5a140e05bcaa438a815b7da99fa65af0",
+                "requestBody": {
+                    "description": "State id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "state": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "State not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "State update for id",
+                "operationId": "states.update",
+                "requestBody": {
+                    "description": "State data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "abbreviation"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "name",
+                                        "example": "São Paulo"
+                                    },
+                                    "abbreviation": {
+                                        "type": "string",
+                                        "format": "CC",
+                                        "example": "SP"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "states": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "State not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "State"
+                ],
+                "summary": "Delete state for id",
+                "operationId": "states.delete",
+                "requestBody": {
+                    "description": "State id",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "State not found"
+                    }
+                }
+            }
+        }
+    }
+}

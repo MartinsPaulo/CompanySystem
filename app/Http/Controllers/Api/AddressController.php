@@ -9,24 +9,14 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-         /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return response()->json(Address::with('city')->with('state')->get());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\cityFormRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(AddressFormRequest $request)
-    {   
+    {
         $city = Address::create($request->all());
         return response()->json($city,201);
     }
@@ -45,7 +35,7 @@ class AddressController extends Controller
             return response()->json(['message' => 'Address not found'],404);
         }
 
-        return $city; 
+        return $city;
     }
 
 
@@ -82,6 +72,6 @@ class AddressController extends Controller
         }else{
             return response()->json(['message' => 'Address not found'],404);
         }
-        
-    } 
+
+    }
 }

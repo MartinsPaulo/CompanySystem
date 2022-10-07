@@ -12,20 +12,44 @@ class StateController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Get(
+    *     tags={"State"},
+    *     path="/api/state",
+    *     summary="Show all states",
+    *     @OA\Response(
+    *         response=200,
+    *         description="Show all states."
+    *     )
+    * )
+    */
     public function index()
     {
         return response()->json(State::all());
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\StateFormRequest  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     * path="/api/state",
+     * summary="State registration",
+     * operationId="states.store",
+     * tags={"State"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="State data",
+     *    @OA\JsonContent(
+     *       required={"name","abbreviation"},
+     *       @OA\Property(property="name", type="string", format="name", example="São Paulo"),
+     *       @OA\Property(property="abbreviation", type="string", format="CC", example="SP"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="Success",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="states", type="object")
+     *        )
+     *     )
+     * )
      */
     public function store(StateFormRequest $request)
     {
@@ -33,11 +57,32 @@ class StateController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Get(
+    *     tags={"State"},
+    *     path="/api/state/{id}",
+    *     summary="Find state for id",
+    *       @OA\RequestBody(
+    *           required=true,
+    *           description="State id",
+    *           @OA\JsonContent(
+    *               required={"id"},
+    *               @OA\Property(property="id", type="integer",  example="1"),
+    *           ),
+    *       ),
+    *     @OA\Response(
+    *         response=200,
+     *           description="Success",
+     *           @OA\JsonContent(
+     *              @OA\Property(property="state", type="object")
+     *          )
+    *     ),
+    *     @OA\Response(
+    *         response=404,
+    *         description="State not found"
+    *     )
+    *   )
+    * )
+    */
     public function show($id)
     {
         $state = State::find($id);
@@ -50,12 +95,33 @@ class StateController extends Controller
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\ReqStateFormRequestuest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+   /**
+     * @OA\Put(
+     * path="/api/state/{id}",
+     * summary="State update for id",
+     * operationId="states.update",
+     * tags={"State"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="State data",
+     *    @OA\JsonContent(
+     *       required={"name","abbreviation"},
+     *       @OA\Property(property="name", type="string", format="name", example="São Paulo"),
+     *       @OA\Property(property="abbreviation", type="string", format="CC", example="SP"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *    response=200,
+     *    description="Success",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="states", type="object")
+     *        )
+     *     ),
+     * @OA\Response(
+     *    response=404,
+     *    description="State not found"
+     *   )
+     * )
      */
     public function update(StateFormRequest $request, $id)
     {
@@ -70,11 +136,26 @@ class StateController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Delete(
+    *     tags={"State"},
+    *     path="/api/state/{id}",
+    *     summary="Delete state for id",
+    *     operationId="states.delete",
+    *       @OA\RequestBody(
+    *           required=true,
+    *           description="State id",
+    *           @OA\JsonContent(
+    *               required={"id"},
+    *               @OA\Property(property="id", type="integer",  example="1"),
+    *           ),
+    *       ),
+    *     @OA\Response(
+    *         response=404,
+    *         description="State not found"
+    *     )
+    *   )
+    * )
+    */
     public function destroy($id)
     {
         if($state = State::destroy($id)){
@@ -82,6 +163,6 @@ class StateController extends Controller
         }else{
             return response()->json(['message' => 'State not found'],404);
         }
-        
+
     }
 }
