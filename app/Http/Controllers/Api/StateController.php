@@ -14,7 +14,7 @@ class StateController extends Controller
     /**
     * @OA\Get(
     *     tags={"State"},
-    *     path="/api/state",
+    *     path="/api/states",
     *     summary="Show all states",
     *     @OA\Response(
     *         response=200,
@@ -29,7 +29,7 @@ class StateController extends Controller
 
     /**
      * @OA\Post(
-     * path="/api/state",
+     * path="/api/states",
      * summary="State registration",
      * operationId="states.store",
      * tags={"State"},
@@ -43,7 +43,7 @@ class StateController extends Controller
      *    ),
      * ),
      * @OA\Response(
-     *    response=200,
+     *    response=201,
      *    description="Success",
      *    @OA\JsonContent(
      *       @OA\Property(property="states", type="object")
@@ -59,16 +59,15 @@ class StateController extends Controller
     /**
     * @OA\Get(
     *     tags={"State"},
-    *     path="/api/state/{id}",
+    *     path="/api/states/{id}",
     *     summary="Find state for id",
-    *       @OA\RequestBody(
-    *           required=true,
-    *           description="State id",
-    *           @OA\JsonContent(
-    *               required={"id"},
-    *               @OA\Property(property="id", type="integer",  example="1"),
-    *           ),
-    *       ),
+    * @OA\Parameter(
+    *       description="id",
+    *       in="path",
+    *       name="id",
+    *       required=true,
+    *       example="1",
+    * ),
     *     @OA\Response(
     *         response=200,
      *           description="Success",
@@ -97,7 +96,7 @@ class StateController extends Controller
 
    /**
      * @OA\Put(
-     * path="/api/state/{id}",
+     * path="/api/states",
      * summary="State update for id",
      * operationId="states.update",
      * tags={"State"},
@@ -110,6 +109,13 @@ class StateController extends Controller
      *       @OA\Property(property="abbreviation", type="string", format="CC", example="SP"),
      *    ),
      * ),
+    * @OA\Parameter(
+    *       description="id",
+    *       in="path",
+    *       name="id",
+    *       required=true,
+    *       example="1",
+    * ),
      * @OA\Response(
      *    response=200,
      *    description="Success",
@@ -138,17 +144,16 @@ class StateController extends Controller
     /**
     * @OA\Delete(
     *     tags={"State"},
-    *     path="/api/state/{id}",
+    *     path="/api/states",
     *     summary="Delete state for id",
     *     operationId="states.delete",
-    *       @OA\RequestBody(
-    *           required=true,
-    *           description="State id",
-    *           @OA\JsonContent(
-    *               required={"id"},
-    *               @OA\Property(property="id", type="integer",  example="1"),
-    *           ),
-    *       ),
+    * @OA\Parameter(
+    *       description="id",
+    *       in="path",
+    *       name="id",
+    *       required=true,
+    *       example="1",
+    * ),
     *     @OA\Response(
     *         response=404,
     *         description="State not found"

@@ -9,14 +9,14 @@ class City extends Model
 {
     use HasFactory;
 
-    protected $table = 'City';
+    protected $table = 'cities';
     protected $fillable = ['name','state_id'];
 
-    public function state() { 
+    public function state() {
           return $this->belongsTo(State::class,'state_id');
     }
 
-    public function address() { 
-        return $this->hasMany(Address::class,'city_id');
+    public function Company() {
+        return $this->hasMany(Company::class,'city_id');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\StateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,11 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/states',StateController::class);
 Route::apiResource('/city',CityController::class);
-Route::apiResource('/address',AddressController::class);
 
-Route::get('hello',function ( Request $request){
-    return response()->json([
-        "code" => 200,
-        "message" => 'Hello World'
-    ]);
+Route::prefix('/company')->group(function () {
+    Route::get('', [CompanyController::class, 'index'])->name('api.company.index');
+    Route::get('/find/state/{state_id}', [CompanyController::class, 'companyFindForState'])->name('api.company.companyFindForState');
+    Route::get('/find/city/{city_id}', [CompanyController::class, 'companyFindForCity'])->name('api.company.companyFindForCity');
+    Route::get('/find/name/{name_id}', [CompanyController::class, 'companyFindForName'])->name('api.company.companyFindForName');
 });
