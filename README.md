@@ -28,7 +28,8 @@ Com isto vai preencher todos dados fakes nescessarios para teste.
 ## Visualização da API
 
 Após rodar o comando
-_hp artisan l5-swagger:generate_ 
+
+_php artisan l5-swagger:generate_ 
 
 e
 
