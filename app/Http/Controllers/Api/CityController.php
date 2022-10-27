@@ -16,6 +16,12 @@ class CityController extends Controller
                     ->json(City::with('state')->get());
     }
 
+    public function getCitiesForState($idState)
+    {
+        return response()
+                    ->json(City::where('state_id',$idState)->get());
+    }
+
     public function store(CityFormRequest $request)
     {
         $city = City::create($request->all());

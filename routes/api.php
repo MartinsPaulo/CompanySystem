@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/states',StateController::class);
 Route::apiResource('/city',CityController::class);
+Route::get('/city/getCitiesForState/{state_id}', [CityController::class, 'getCitiesForState'])->name('api.cities.getCitiesForState');
 
 Route::prefix('/company')->group(function () {
     Route::get('', [CompanyController::class, 'index'])->name('api.company.index');
