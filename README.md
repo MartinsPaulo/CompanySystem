@@ -1,7 +1,4 @@
 ## Instalação
-Primeiro, execute o comando para clonar o projeto do GitHub:
-
-**_git clone --branch multi-tenancy https://github.com/tecnologiacmbbauru/gestaodegabinete.git_**
 
 Após clonar o repositório, acesse a pasta do sistema e instale todas as dependências, executando o comando:
 
