@@ -10,6 +10,7 @@ Após configurar seu banco de dados no arquivo _.env_
 Execute o comando
 
 _php artisan migrate_
+
 _php artisan db:seed_
 
 e então abra o tinker com:
