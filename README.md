@@ -1,3 +1,7 @@
+##
+FRONT END se encontra na pasta "front"
+Precisa ser instalado com o npm  -NÃO FINALIZADO
+
 ## Instalação
 
 Após clonar o repositório, acesse a pasta do sistema e instale todas as dependências, executando o comando:
